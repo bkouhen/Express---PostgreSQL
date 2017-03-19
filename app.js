@@ -4,7 +4,6 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('postgres://qftioduv:ZPRMRqRgl8yZxdtayEILGwqnP7pUGrDE@fizzy-cherry.db.elephantsql.com:5432/qftioduv');
 // Set up the express app
 const app = express();
 
@@ -30,15 +29,5 @@ app.get('*', (req, res) => res.status(200).send({
   message: 'Welcome to the beginning of nothingness.',
 }));*/
 
-// Test Authentification
-
-sequelize
-  .authenticate()
-  .then(function(err) {
-    console.log('Connection has been established successfully with PGSQL Database.');
-  })
-  .catch(function (err) {
-    console.log('Unable to connect to the database:', err);
-  });
 
 module.exports = app;

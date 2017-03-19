@@ -8,7 +8,7 @@ import { PostsComponent } from './posts/posts.component';
 import {RouterModule} from "@angular/router";
 import {PostsService} from "./posts.service";
 
-// Define the routes
+/* Define the routes
 const ROUTES = [
   {
     path: '',
@@ -19,7 +19,7 @@ const ROUTES = [
     path: 'posts',
     component: PostsComponent
   }
-];
+];*/
 
 @NgModule({
   declarations: [
@@ -29,8 +29,7 @@ const ROUTES = [
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    RouterModule.forRoot(ROUTES)
+    HttpModule
   ],
   providers: [PostsService],
   bootstrap: [AppComponent]

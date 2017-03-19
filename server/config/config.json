@@ -1,13 +1,6 @@
 {
   "development": {
-    "use_env_variable": "DATABASE_URL"
-  },
-  "test": {
-    "username": "waiyaki",
-    "password": null,
-    "database": "todos-test",
-    "host": "127.0.0.1",
-    "port": 5432,
-    "dialect": "postgres"
+    "use_env_variable": "postgres://qftioduv:ZPRMRqRgl8yZxdtayEILGwqnP7pUGrDE@fizzy-cherry.db.elephantsql.com:5432/qftioduv"
   }
+
 }
