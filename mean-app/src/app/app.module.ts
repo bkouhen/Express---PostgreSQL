@@ -7,8 +7,11 @@ import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
 import {RouterModule} from "@angular/router";
 import {PostsService} from "./posts.service";
+import { TestComponent } from './test/test.component';
+import { SignupComponent } from './signup/signup.component';
+import {SignupService} from "./services/signup.service";
 
-/* Define the routes
+// Define the routes
 const ROUTES = [
   {
     path: '',
@@ -16,22 +19,33 @@ const ROUTES = [
     pathMatch: 'full'
   },
   {
+    path: 'signup',
+    component: SignupComponent
+  },
+  {
     path: 'posts',
     component: PostsComponent
+  },
+  {
+    path: 'test',
+    component: TestComponent
   }
-];*/
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostsComponent
+    PostsComponent,
+    TestComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(ROUTES)
   ],
-  providers: [PostsService],
+  providers: [PostsService, SignupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
