@@ -1,6 +1,12 @@
 {
   "development": {
-    "use_env_variable": "postgres://qftioduv:ZPRMRqRgl8yZxdtayEILGwqnP7pUGrDE@fizzy-cherry.db.elephantsql.com:5432/qftioduv"
+    "use_env_variable": "postgres://qftioduv:ZPRMRqRgl8yZxdtayEILGwqnP7pUGrDE@fizzy-cherry.db.elephantsql.com:5432/qftioduv",
+    "username": "qftioduv",
+    "password": "ZPRMRqRgl8yZxdtayEILGwqnP7pUGrDE",
+    "database": "qftioduv",
+    "host": "fizzy-cherry.db.elephantsql.com",
+    "port": 5432,
+    "dialect": "postgres"
   }
 
 }

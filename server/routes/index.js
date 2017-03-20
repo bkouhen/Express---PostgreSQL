@@ -1,5 +1,6 @@
 const todosController = require('../controllers').todos;
 const todoItemsController = require('../controllers').todoItems;
+const usersController = require('../controllers').users;
 
 module.exports = (app) => {
     app.get('/api', (req, res) => res.status(200).send({
@@ -21,5 +22,10 @@ module.exports = (app) => {
         res.status(405).send({
           message: 'Method Not Allowed',
       }));
+
+    // Users
+
+    app.post('/api/users', usersController.create);
+    app.get('/api/users', usersController.list);
 
 };
