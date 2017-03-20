@@ -4,15 +4,29 @@
       </div>
 </form>
 
+<h2>All posts</h2><br/>
+
 <div class="container">
   <div class="row" *ngFor="let post of posts">
     <div class="card card-block">
       <h4 class="card-title">Title : {{ post.title }}</h4>
       <p class="card-text"> Id : {{post.id}}</p>
-      <p class="card-text">Created At : {{post.createdAt}}</p>
-      <p class="card-text">Updated At : {{post.updatedAt}}</p>
-      <p class="card-text">TodoItems : {{post.todoItems}}</p>
-      <input type="button" (click)="deletePost(post.id)" value="Delete" class="btn btn-danger">
+        <form class="well" (submit)="addItem($event, post.id)" >
+          <div class="form-group">
+            <input type="text" [(ngModel)]="titleItem[post.id]" name="titleItem" class="form-control" placeholder="Add Item...">
+          </div>
+        </form>
+      <div *ngIf="items[post.id]" class="container"> Todoitems :
+        <div class="row">
+          <div *ngFor="let item of items[post.id]" class="card card-block">
+            <h4 class="card-title">Item id : {{ item.id }}</h4>
+            <p class="card-text"> Content : {{item.content}}</p>
+            <p class="card-text"> Complete : {{item.complete}}<input type="checkbox" [checked]="item.complete" (click)="updateBoolItem(item)"></p>
+            <input type="button" (click)="deleteItem(post.id, item.id)" value="Delete Item" class="btn btn-danger">
+          </div>
+        </div>
+      </div>
+      <input type="button" (click)="deletePost(post.id)" value="Delete Post" class="btn btn-danger">
     </div>
   </div>
 </div>

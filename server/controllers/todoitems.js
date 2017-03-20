@@ -10,6 +10,16 @@ module.exports = {
       .then(todoItem => res.status(201).send(todoItem))
       .catch(error => res.status(400).send(error));
   },
+    list(req, res) {
+  return TodoItem
+    .findAll({
+        where: {
+          todoId: req.params.todoId
+        },
+      })
+    .then(todoitems => res.status(200).send(todoitems))
+    .catch(error => res.status(400).send(error));
+},
     update(req, res) {
   return TodoItem
     .find({
