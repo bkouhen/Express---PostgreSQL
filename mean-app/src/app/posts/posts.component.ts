@@ -28,7 +28,6 @@ export class PostsComponent implements OnInit {
         this.titleItem[post.id] = '';
       }
 
-      console.log(this.titleItem);
       console.log(this.items);
 
     });
@@ -44,6 +43,8 @@ export class PostsComponent implements OnInit {
       .subscribe(post => {
         this.posts.push(post);
         this.title = '';
+        this.titleItem[post.id] = '';
+        console.log(this.titleItem);
       });
 
   }
@@ -58,8 +59,17 @@ export class PostsComponent implements OnInit {
 
     this.postsService.addItem(newItem, postID).subscribe(item => {
 
-      this.items[postID].push(item);
       this.titleItem[postID] = '';
+
+      if (this.items[postID]) {
+        this.items[postID].push(item);
+        console.log(this.items[postID]);
+      } else {
+        this.items[postID] = [item];
+        console.log(this.items[postID]);
+      }
+
+
     });
   }
 
