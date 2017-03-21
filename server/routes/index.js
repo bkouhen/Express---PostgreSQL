@@ -1,6 +1,12 @@
 const todosController = require('../controllers').todos;
 const todoItemsController = require('../controllers').todoItems;
 const usersController = require('../controllers').users;
+const jwt = require('express-jwt');
+
+const authCheck = jwt({
+  secret: 'R1wwqSq8pVTTMosHSTa4PsWZh0mKtZpkuSqBdjlRzG1uFvtV2kKSKeUf6hGyUGYK',
+  audience: 'j0eAGD9sotQrMfZkZ2iujsGSOIUVQJjv'
+});
 
 module.exports = (app) => {
     app.get('/api', (req, res) => res.status(200).send({
@@ -8,7 +14,7 @@ module.exports = (app) => {
     }));
 
     app.post('/api/todos', todosController.create);
-    app.get('/api/todos', todosController.list);
+    app.get('/api/todos', authCheck, todosController.list);
     app.get('/api/todos/:todoId', todosController.retrieve);
     app.put('/api/todos/:todoId', todosController.update);
     app.delete('/api/todos/:todoId', todosController.destroy);

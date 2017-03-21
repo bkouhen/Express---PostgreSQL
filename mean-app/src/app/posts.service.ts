@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers } from "@angular/http";
 import 'rxjs/add/operator/map';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class PostsService {
 
-  constructor(private http:Http) { }
+  constructor(private http:Http, public authHttp: AuthHttp) { }
 
   // Get all posts from the API
-
   getAllPosts() {
-    return this.http.get('/api/todos')
+    return this.authHttp.get('/api/todos')
       .map(res => res.json());
     }
 

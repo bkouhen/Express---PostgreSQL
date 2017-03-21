@@ -3,8 +3,17 @@ const path = require('path');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
+// Import the required dependencies (Securing the server)
+const jwt = require('express-jwt');
+const cors = require('cors');
+
 // Set up the express app
 const app = express();
+
+// We are going to implement a JWT middleware that will ensure the validity of our token.
+// We'll require each protected route to have a valid token sent in the Authorization header
+
+app.use(cors());
 
 // Log requests to the console.
 app.use(logger('dev'));
@@ -23,4 +32,4 @@ app.get('*', (req, res) => res.status(200).send({
 }));*/
 
 
-module.exports = app;
+module.exports = {app};
