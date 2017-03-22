@@ -2,11 +2,30 @@
 <div class="container">
 
 <h1>
-  {{title}} 2.0
+  {{title}} 3.0
 </h1>
 
-  <a routerLink="/posts">The Posts</a>
-  <a routerLink="/signup">Sign Up !</a>
+</div>
 
-<router-outlet></router-outlet>
+<header class="container">
+  <h1><a routerLink="/posts">Posts</a></h1>
+  <nav>
+    <ul class="nav nav-pills">
+      <li *ngIf="!user">
+        <a routerLink="/login">Login</a>
+      </li>
+      <li *ngIf="!user">
+        <a routerLink="/signup">Register</a>
+      </li>
+      <li *ngIf="user"><button (click)="logout()" class="btn">Logout</button></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="container">
+
+  <p *ngIf="user">Logged in as: {{user.user_mail}}</p>
+  <p *ngIf="!user">Not logged in</p>
+
+  <router-outlet></router-outlet>
 </div>

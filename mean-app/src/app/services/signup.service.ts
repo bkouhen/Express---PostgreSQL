@@ -10,7 +10,7 @@ export class SignupService {
   addUser(newUser) {
     var headers = new Headers;
     headers.append('Content-Type', 'application/json');
-    return this.http.post('/api/users', JSON.stringify(newUser), {headers:headers})
+    return this.http.post('/api/users/register', JSON.stringify(newUser), {headers:headers})
       .map(res => res.json());
   }
 

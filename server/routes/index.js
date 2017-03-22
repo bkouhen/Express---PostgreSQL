@@ -1,6 +1,13 @@
 const todosController = require('../controllers').todos;
 const todoItemsController = require('../controllers').todoItems;
 const usersController = require('../controllers').users;
+const expressJWT = require('express-jwt');
+const config = {secret : 'doppiaeast', database: 'postgres://qftioduv:ZPRMRqRgl8yZxdtayEILGwqnP7pUGrDE@fizzy-cherry.db.elephantsql.com:5432/qftioduv'};
+const jwt = require('jsonwebtoken');
+const auth = require('../auth');
+
+const jwtSecret = 'doppiaeast';
+const authCheck = expressJWT({secret : jwtSecret});
 
 module.exports = (app) => {
     app.get('/api', (req, res) => res.status(200).send({
@@ -8,7 +15,7 @@ module.exports = (app) => {
     }));
 
     app.post('/api/todos', todosController.create);
-    app.get('/api/todos', todosController.list);
+    app.get('/api/todos', auth.verifyToken, todosController.list);
     app.get('/api/todos/:todoId', todosController.retrieve);
     app.put('/api/todos/:todoId', todosController.update);
     app.delete('/api/todos/:todoId', todosController.destroy);
@@ -25,7 +32,9 @@ module.exports = (app) => {
 
     // Users
 
-    app.post('/api/users', usersController.create);
+    app.post('/api/users/register', usersController.registerUser);
+    app.post('/api/users/login', auth.verifyToken, usersController.loginUser);
+    app.get('/api/users/check-state', auth.verifyToken, usersController.checkState);
     app.get('/api/users', usersController.list);
 
 };
