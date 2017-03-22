@@ -16,13 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
       }
     }
-  },
-      {
-        instanceMethods: {
-            validPassword : (password) => {bcrypt.compareSync(password, this.user_password);},
-        }
-
-      });
+  });
 
 
 

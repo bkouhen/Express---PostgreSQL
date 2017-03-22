@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const auth = require('../auth');
 
 const jwtSecret = 'doppiaeast';
-const authCheck = expressJWT({secret : jwtSecret});
+const authCheck = expressJWT({secret : 'doppiaeast'});
 
 module.exports = (app) => {
     app.get('/api', (req, res) => res.status(200).send({
@@ -32,8 +32,8 @@ module.exports = (app) => {
 
     // Users
 
-    app.post('/api/users/register', usersController.registerUser);
-    app.post('/api/users/login', auth.verifyToken, usersController.loginUser);
+    app.post('/api/users/register' , usersController.registerUser);
+    app.post('/api/users/login', usersController.loginUser);
     app.get('/api/users/check-state', auth.verifyToken, usersController.checkState);
     app.get('/api/users', usersController.list);
 

@@ -5,8 +5,9 @@ const config = {secret : 'doppiaeast', database: 'postgres://qftioduv:ZPRMRqRgl8
 module.exports = {
 
     verifyToken: ( (req, res, next) => {
-        console.log('auth', req.body);
+        console.log('auth', req.headers['x-access-token']);
         let token = req.body.token || req.query.token || req.headers['x-access-token'];
+        console.log('token decoded', jwt.decode(token));
 
         if( token ) {
 
