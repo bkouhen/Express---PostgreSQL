@@ -2,6 +2,7 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {AuthService} from "./services/auth.service";
 import {User} from "./models/user";
 import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit, OnDestroy{
   message:String;
   subscription:Subscription;
 
-  constructor(private authService:AuthService) {
+  constructor(private authService:AuthService, private router:Router) {
     this.subscription = authService.user$.subscribe((user) => this.user = user);
   }
 
@@ -25,6 +26,12 @@ export class AppComponent implements OnInit, OnDestroy{
     this.authService.verify().subscribe( (res) => {
       console.log(res);
       this.message = res['message'];
+      if (res['message'] == 'Failed to authenticate token.') {
+        this.authService.logout();
+        this.user = null;
+        this.message = `Your session expired, you've been logged out`;
+        this.router.navigate(['/login']);
+      }
     }
     );
   }

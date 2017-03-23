@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {PostsService} from "../posts.service";
+import {AuthService} from "../services/auth.service";
+import {User} from "../models/user";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-posts',
@@ -8,14 +11,22 @@ import {PostsService} from "../posts.service";
 })
 export class PostsComponent implements OnInit {
 
+  user:User;
   posts:any = [];
   items:any = [];
   title : string;
   titleItem:any = [];
 
-  constructor(private postsService : PostsService) { }
+  constructor(private postsService : PostsService, private router:Router, private authService:AuthService) { }
 
   ngOnInit() {
+    // Check for token (CanActivate())
+    if (localStorage.getItem('currentUser')) {
+      console.log('Token found');
+    } else {
+      this.router.navigate(['/login']);
+    }
+
     // Retrieve posts from the API
     this.postsService.getAllPosts().subscribe(posts => {
       this.posts = posts;

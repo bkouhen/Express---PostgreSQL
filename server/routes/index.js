@@ -2,12 +2,12 @@ const todosController = require('../controllers').todos;
 const todoItemsController = require('../controllers').todoItems;
 const usersController = require('../controllers').users;
 const expressJWT = require('express-jwt');
-const config = {secret : 'doppiaeast', database: 'postgres://qftioduv:ZPRMRqRgl8yZxdtayEILGwqnP7pUGrDE@fizzy-cherry.db.elephantsql.com:5432/qftioduv'};
+const config = {secret : 'azertyuiopmlkjhgfdsqwxcvbn', database: 'postgres://qftioduv:ZPRMRqRgl8yZxdtayEILGwqnP7pUGrDE@fizzy-cherry.db.elephantsql.com:5432/qftioduv'};
 const jwt = require('jsonwebtoken');
 const auth = require('../auth');
 
-const jwtSecret = 'doppiaeast';
-const authCheck = expressJWT({secret : 'doppiaeast'});
+const jwtSecret = 'azertyuiopmlkjhgfdsqwxcvbn';
+const authCheck = expressJWT({secret : jwtSecret});
 
 module.exports = (app) => {
     app.get('/api', (req, res) => res.status(200).send({

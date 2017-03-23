@@ -5,13 +5,17 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PostsService {
 
+  token:string;
+
   constructor(private http:Http) { }
 
   // Get all posts from the API
 
   getAllPosts() {
-    return this.http.get('/api/todos')
-      .map(res => res.json());
+    let currUser = JSON.parse(localStorage.getItem('currentUser'));
+    let token = ( currUser && 'token' in currUser) ? currUser.token : this.token;
+    let headers = new Headers({ 'x-access-token': token });
+    return this.http.get('/api/todos', {headers:headers}).map(res => res.json());
     }
 
   addPost(newPost) {

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import {AuthService} from "../services/auth.service";
 import {User} from "../models/user";
@@ -11,7 +10,6 @@ import {User} from "../models/user";
 })
 export class LoginComponent implements OnInit {
 
-  loginForm:FormGroup;
   message:String;
   user:User;
   user_status:boolean;
@@ -26,7 +24,7 @@ export class LoginComponent implements OnInit {
       this.user_status = res['success'];
       if(res['success'] == true) {
         this.authService.setUser(res['user']);
-        this.router.navigate(['']);
+        this.router.navigate(['/posts']);
       } else {
         this.message = res['message'];
       }

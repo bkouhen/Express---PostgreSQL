@@ -1,5 +1,5 @@
 const User = require('../models').User;
-const config = {secret : 'doppiaeast', database: 'postgres://qftioduv:ZPRMRqRgl8yZxdtayEILGwqnP7pUGrDE@fizzy-cherry.db.elephantsql.com:5432/qftioduv'};
+const config = {secret : 'azertyuiopmlkjhgfdsqwxcvbn', database: 'postgres://qftioduv:ZPRMRqRgl8yZxdtayEILGwqnP7pUGrDE@fizzy-cherry.db.elephantsql.com:5432/qftioduv'};
 const jwt = require('jsonwebtoken');
 const auth = require('../auth');
 const bcrypt = require('bcrypt-nodejs');
@@ -10,8 +10,6 @@ module.exports = {
 
     checkState(req, res) {
         console.log('check-headers', req.headers);
-        console.log('check-body', req.body);
-        console.log('check-query', req.query);
         let content = {
             success: true,
             message: 'Successfully logged in'
@@ -35,7 +33,7 @@ module.exports = {
                 user_password : bcrypt.hashSync(req.body.user_password, bcrypt.genSaltSync(8), null)
           }).then(user =>  {
                 console.log('user',user);
-                let token = jwt.sign({data:user}, 'doppiaeast', {
+                let token = jwt.sign({data:user}, 'azertyuiopmlkjhgfdsqwxcvbn', {
                       expiresIn : 60*60*24
                     });
                 console.log('token', token);
@@ -72,8 +70,8 @@ module.exports = {
       }
 
                 console.log('user',user);
-                let token = jwt.sign({data:user}, 'doppiaeast', {
-                      expiresIn : 60*60*24
+                let token = jwt.sign({data:user}, 'azertyuiopmlkjhgfdsqwxcvbn', {
+                      expiresIn : 60
                     });
                 console.log('token', token);
                 let content = {
